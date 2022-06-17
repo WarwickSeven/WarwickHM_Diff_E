@@ -3,9 +3,9 @@
 #include <set>
 
 template<typename T> void DumbSearch(const T begin, const T end) {
-    std::cout << "Dumb search: "<< std::endl;
-    for (T p1=begin;p1!=end;++p1) {
-        T p2;
+    std::cout << "Unique words: "<< std::endl;
+    T p1, p2;
+    for (p1=begin; p1!=end; ++p1) {
         for (p2=begin; p2!=p1; ++p2)
             if (*p1==*p2)
                 break;
@@ -16,14 +16,13 @@ template<typename T> void DumbSearch(const T begin, const T end) {
 }
 
 template<typename T> void SmartSearch(const T begin, const T end) {
-    std::cout << "Smart search: "<< std::endl;
+    std::cout << "Unique words: "<< std::endl;
     std::set<std::string> buf(begin, end);
     for (auto i : buf) {
         std::cout << i << " ";
     }
     std::cout << std::endl;
 }
-
 
 int main() {
     std::vector<std::string> MyVec = {"One", "Two", "Three", "Two", "Four", "Five", "One", "Two", "Snake!",};

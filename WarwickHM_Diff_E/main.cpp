@@ -1,8 +1,8 @@
 #include <iostream>
 #include <iterator>
-#include <string>
 #include <unordered_set>
-#include <queue>
+#include <algorithm>
+#include <map>
 
 std::string getSentence(std::string &s) {
     std::string punctuationMarks { ".?!" };
@@ -21,32 +21,24 @@ std::string getSentence(std::string &s) {
 }
 
 int main() {
-    std::unordered_set<std::string, std::hash<std::string>> sentences;
+    std::multimap<int, std::string> sentences;
     std::string currentString, tempString;
-    while (std::getline(std::cin, currentString)) {
+    do {
+        std::cout << "Text plz (or press Enter to continue): "<< std::endl;
+        std::getline(std::cin, currentString);
         if (!currentString.empty()) {
-            tempString += currentString + ' ';
+            tempString += (currentString + ' ');
             while (true) {
                 std::string sentence(getSentence(tempString));
                 if (sentence.empty()) {
                     break;
                 }
-                sentences.insert(std::move(sentence));
+                sentences.insert({std::count(sentence.begin(), sentence.end(), ' ') + 1, sentence});
             }
-            std::cout << "Current string: " << currentString << std::endl;
-            std::cout << "Temp string: "<< tempString << std::endl;
-        } else
-            if (currentString.empty())
-                break;
-    }
-
-    std::priority_queue<std::pair<size_t, std::string>> q;
-    for (const auto &sentence : sentences) {
-        q.push({ sentence.size(), sentence });
-    }
-    while (!q.empty()) {
-        std::cout << q.top().first << ": " << q.top().second << '\n';
-        q.pop();
-    }
+        }
+    } while (!currentString.empty());
+    
+    for_each(sentences.begin(), sentences.end(),[](std::pair<int, std::string> item) {
+          std::cout << item.first << " " << item.second << "\n";});
     return 0;
 }

@@ -28,8 +28,8 @@ int main() {
     std::vector<std::string> MyVec = {"One", "Two", "Three", "Two", "Four", "Five", "One", "Two", "Snake!",};
     std::multiset<std::string> MySet(MyVec.begin(), MyVec.end());
     DumbSearch(MyVec.begin(), MyVec.end());
-    DumbSearch(MySet.begin(), MySet.end());
     SmartSearch(MyVec.begin(),MyVec.end());
     SmartSearch(MySet.begin(),MySet.end());
+    SmartSearch(MySet.rbegin(),MySet.rend());
     return 0;
 }

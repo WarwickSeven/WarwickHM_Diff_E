@@ -33,7 +33,11 @@ int main() {
                 }
                 sentences.insert(std::move(sentence));
             }
-        }
+            std::cout << "Current string: " << currentString << std::endl;
+            std::cout << "Temp string: "<< tempString << std::endl;
+        } else
+            if (currentString.empty())
+                break;
     }
 
     std::priority_queue<std::pair<size_t, std::string>> q;

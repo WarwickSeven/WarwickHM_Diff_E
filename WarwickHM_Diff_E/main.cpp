@@ -25,7 +25,7 @@ template<typename T> void SmartSearch(const T begin, const T end) {
 }
 
 int main() {
-    std::vector<std::string> MyVec = {"One", "Two", "Three", "Two", "Four", "Five", "One", "Two", "Snake!",};
+    std::vector<std::string> MyVec = {"One", "Two", "Three", "Two", "Four", "Five", "One", "Two", "Snake!"};
     std::multiset<std::string> MySet(MyVec.begin(), MyVec.end());
     DumbSearch(MyVec.begin(), MyVec.end());
     SmartSearch(MyVec.begin(),MyVec.end());
